@@ -108,7 +108,7 @@ button:focus-visible {
   position: absolute;
   inset: 0;
   opacity: 0;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease, transform 1.15s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .three-walk-character.has-webgl-character .three-walk-character-canvas {
@@ -386,9 +386,49 @@ button:focus-visible {
   transition: transform 1.15s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.transition-character-motion {
+  position: relative;
+}
+
+.transition-character-legacy,
+.transition-character-webgl {
+  transition: opacity 0.2s ease;
+}
+
+.transition-character-legacy {
+  opacity: 1;
+}
+
+.transition-character-webgl {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.transition-character:not(.is-home) .transition-character-legacy {
+  opacity: 0;
+}
+
+.transition-character:not(.is-home) .transition-character-webgl {
+  opacity: 1;
+}
+
+.transition-character.is-home .transition-character-legacy {
+  opacity: 0;
+}
+
+.transition-character.is-home .transition-character-webgl {
+  opacity: 1;
+}
+
+.transition-character.is-home .transition-character-webgl .three-walk-character-canvas,
+.transition-character.is-home .transition-character-webgl .three-walk-character-fallback {
+  transform: scale(4.5);
+  transform-origin: 50% 15%;
+}
+
 .transition-character.is-home .transition-character-motion {
   height: 100%;
-  animation: hero-breathe 1.2s ease-in-out infinite;
 }
 
 .transition-character.is-home img {
@@ -398,14 +438,6 @@ button:focus-visible {
   transform: scale(3.1);
   transform-origin: 50% 0;
   filter: drop-shadow(0 10px 0 rgba(255, 255, 255, 0.18));
-}
-
-.transition-character.is-horizontal .transition-character-motion {
-  animation: horizontal-float 3.8s ease-in-out infinite;
-}
-
-.transition-character.is-walking .transition-character-motion {
-  animation: character-walk 1.05s ease-in-out infinite;
 }
 
 .slide-two-title {
@@ -698,19 +730,6 @@ button:focus-visible {
   38% { transform: translate3d(var(--shape-drift), -42vh, 0) rotate(var(--shape-turn)); }
   72% { transform: translate3d(calc(var(--shape-drift) * -0.45), -96vh, 0) rotate(calc(var(--shape-turn) * -0.55)); }
   100% { transform: translate3d(0, -158vh, 0) rotate(0deg); }
-}
-
-@keyframes horizontal-float {
-  0%, 100% { translate: 0 0; }
-  38% { translate: 15px -11px; }
-  72% { translate: -9px 7px; }
-}
-
-@keyframes character-walk {
-  0%, 100% { transform: translate3d(0, 0, 0) rotate(-1.5deg); }
-  25% { transform: translate3d(8px, -8px, 0) rotate(1.2deg); }
-  50% { transform: translate3d(15px, 0, 0) rotate(-0.7deg); }
-  75% { transform: translate3d(7px, -6px, 0) rotate(1deg); }
 }
 
 @keyframes shape-cross {

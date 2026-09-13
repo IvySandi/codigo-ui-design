@@ -14,13 +14,12 @@ export function TransitionCharacter({ activeSlide }: { activeSlide: number }) {
       className={`transition-character ${position}`}
       aria-hidden="true"
     >
-      {activeSlide === 0 ? (
-        <div className="transition-character-motion">
+      <div className="transition-character-motion">
+        <div className="transition-character-legacy">
           <Character eager />
         </div>
-      ) : (
-        <ThreeWalkCharacter active motion={motion} className="transition-character-motion" />
-      )}
+        <ThreeWalkCharacter active motion={motion} className="transition-character-webgl" />
+      </div>
     </div>
   );
 }
