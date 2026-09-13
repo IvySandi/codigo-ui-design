@@ -1,0 +1,27 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .shadow { transform-origin: 540px 950px; animation: shadow-step 0.78s ease-in-out infinite; }
+    .walker { transform-box: fill-box; transform-origin: 50% 92%; animation: walk-cycle 0.78s ease-in-out infinite; }
+
+    @keyframes walk-cycle {
+      0%, 100% { transform: translate(0, 0) rotate(-2deg); }
+      25% { transform: translate(18px, -28px) rotate(2.5deg); }
+      50% { transform: translate(34px, 0) rotate(-1deg); }
+      75% { transform: translate(17px, -23px) rotate(2deg); }
+    }
+
+    @keyframes shadow-step {
+      0%, 100% { transform: scaleX(1); opacity: 0.16; }
+      25%, 75% { transform: scaleX(0.82); opacity: 0.1; }
+      50% { transform: scaleX(1.05); opacity: 0.14; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .shadow, .walker { animation: none; }
+    }
+  </style>
+  <ellipse class="shadow" cx="540" cy="965" rx="230" ry="38" fill="#2946A0" />
+  <g class="walker">
+    <image href="/assets/transhumans/Chillin.svg" width="1080" height="1080" />
+  </g>
+</svg>

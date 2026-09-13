@@ -89,14 +89,38 @@ button:focus-visible {
 
 .preloader-figure {
   width: clamp(80px, 9vw, 118px);
-  animation: preload-walk 0.78s ease-in-out infinite;
-  transform-origin: 50% 92%;
 }
 
-.preloader-figure img {
+.three-walk-character {
+  position: relative;
+  overflow: hidden;
+}
+
+.three-walk-character-canvas,
+.three-walk-character-fallback {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: contain;
+}
+
+.three-walk-character-canvas {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.three-walk-character.has-webgl-character .three-walk-character-canvas {
+  opacity: 1;
+}
+
+.three-walk-character.has-webgl-character .three-walk-character-fallback {
+  visibility: hidden;
+}
+
+.preloader-figure {
+  aspect-ratio: 1;
 }
 
 .loading-word {
@@ -349,9 +373,9 @@ button:focus-visible {
 
 .transition-character.is-walking {
   left: 28%;
-  top: 74%;
+  top: 81%;
   opacity: 1;
-  transform: translate(-50%, -50%) rotate(4deg) scale(0.56);
+  transform: translate(-50%, -50%) rotate(4deg) scale(1);
 }
 
 .transition-character-motion,
@@ -658,11 +682,6 @@ button:focus-visible {
   transform: translate(-50%, 0);
 }
 
-@keyframes preload-walk {
-  0%, 100% { transform: translateY(0) rotate(-1.5deg); }
-  50% { transform: translateY(-7px) rotate(1.5deg); }
-}
-
 @keyframes loading-letter {
   0%, 100% { opacity: 0.42; transform: translateY(0); }
   50% { opacity: 1; transform: translateY(-3px); }
@@ -794,18 +813,18 @@ button:focus-visible {
     top: 53%;
   }
 
-  .transition-character.is-walking {
-    left: 31%;
-    top: 81%;
-    transform: translate(-50%, -50%) rotate(4deg) scale(0.58);
-  }
-
   .copy-three {
     left: 41vw;
     top: 43%;
     width: 56vw;
     font-size: clamp(11px, 1.55vw, 15px);
     line-height: 3.3;
+  }
+
+  .transition-character.is-walking {
+    left: 29%;
+    top: 84%;
+    transform: translate(-50%, -50%) rotate(4deg) scale(0.54);
   }
 
 }
@@ -873,12 +892,6 @@ button:focus-visible {
     top: 54%;
   }
 
-  .transition-character.is-walking {
-    left: 52%;
-    top: 74%;
-    transform: translate(-50%, -50%) rotate(4deg) scale(0.68);
-  }
-
   .slide-two-title {
     top: 46%;
     font-size: clamp(3.25rem, 15.5vw, 5rem);
@@ -891,6 +904,12 @@ button:focus-visible {
     font-size: clamp(10px, 3.1vw, 12px);
     line-height: 2.2;
     letter-spacing: 0.05em;
+  }
+
+  .transition-character.is-walking {
+    left: 32%;
+    top: 85%;
+    transform: translate(-50%, -50%) rotate(4deg) scale(1.5);
   }
 
   .copy-three p {
